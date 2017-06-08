@@ -7,62 +7,6 @@
 		<link rel="stylesheet" href="css/weui.css">
 		<link rel="stylesheet" href="css/helpyouselect.css">
 		<link rel="shortcut icon" href="image/logo.ico" type="image/x-icon">
-		<script>
-        var imgUrl = "https://www.d1n910.cn/hp/logo1.jpg";
-        var lineLink = "https://www.d1n910.cn/hp;"
-        var descContent = '解救你的选择恐惧症，帮你做出选择';
-        var shareTitle = '解救选择恐惧症';
-        var appid = '';
-           
-        function shareFriend() {
-            WeixinJSBridge.invoke('sendAppMessage',{
-                "appid": appid,
-                "img_url": imgUrl,
-                "img_width": "200",
-                "img_height": "200",
-                "link": lineLink,
-                "desc": descContent,
-                "title": shareTitle
-            }, function(res) {
-                //_report('send_msg', res.err_msg);
-            })
-        }
-        function shareTimeline() {
-            WeixinJSBridge.invoke('shareTimeline',{
-                "img_url": imgUrl,
-                "img_width": "200",
-                "img_height": "200",
-                "link": lineLink,
-                "desc": descContent,
-                "title": shareTitle
-            }, function(res) {
-                   //_report('timeline', res.err_msg);
-            });
-        }
-        function shareWeibo() {
-            WeixinJSBridge.invoke('shareWeibo',{
-                "content": descContent,
-                "url": lineLink,
-            }, function(res) {
-                //_report('weibo', res.err_msg);
-            });
-        }
-        // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
-        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-            // 发送给好友
-            WeixinJSBridge.on('menu:share:appmessage', function(argv){
-                shareFriend();
-            });
-            // 分享到朋友圈
-            WeixinJSBridge.on('menu:share:timeline', function(argv){
-                shareTimeline();
-            });
-            // 分享到微博
-            WeixinJSBridge.on('menu:share:weibo', function(argv){
-                shareWeibo();
-            });
-        }, false);
-</script>
 	</head>
 	<body>
 	<div style='margin:0 auto;display:none;width: 300px;height: 300px;'>
@@ -72,15 +16,9 @@
 		<div class="header">
 			<img src="image/logo.jpg">
 		</div>
-
 		<div class="title title1 add68">点击带“+”的按钮，添加选项</div>
 		<a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default addbotton add68">+</a>
-		
-		<div class="title queren68">请“确认”或“取消”添加选项</div>
-		<div class="querenquxiaocontainer queren68">
-			<a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default quxiaobotton">取消</a>
-			<a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary querenbotton">确认</a>
-		</div>
+
 		<a href="javascript:;" class="weui-btn weui-btn_disabled weui-btn_primary help_button">开始帮忙选择</a>
 	</div>
 	<script src="js/zepto.min.js">

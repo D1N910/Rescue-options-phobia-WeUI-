@@ -1,5 +1,5 @@
 $('document').ready(function() {
-		var newshuruxuanxiang='<div class="weui-cells shuruxuanzeneirong"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="请输入选择的内容"> </div></div></div>';
+		var newshuruxuanxiang='<div class="weui-cells shuruxuanzeneirong"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" placeholder="请输入选择的内容"> </div></div><div class="querenquxiaocontainer queren68"><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default quxiaobotton">取消</a><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary querenbotton">确认</a></div></div>';
 		var newchoiceson1='<div class="weui-cell choiceson"><div class="weui-cell__bd"><p>';
 		var newchoiceson2='</p></div><div class="weui-cell__ft">删除</div></div>';
 
@@ -51,16 +51,17 @@ $('document').ready(function() {
 		$('.addbotton').on('click',function(){
 			select.addinput();
 			select.removeaddandaddchoice();
-		});
-		$('.querenbotton').on('click',function(){
+			$('.querenbotton').on('click',function(){
 			select.addchoiceson();
 			select.removinput();
 			select.removequerenaddadd();
-		});
-		$('.quxiaobotton').on('click',function(){
+			});
+			$('.quxiaobotton').on('click',function(){
 			select.removinput();
 			select.removequerenaddadd();
 		});
+		});
+
 		$('.help_button').on('click',function(){
 			if ($(this).attr('class')=='weui-btn weui-btn_primary help_button') {
 				var choicesonlength=$('.choiceson').length;
