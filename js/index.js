@@ -50,6 +50,7 @@ $('document').ready(function() {
 
 		$('.addbotton').on('click',function(){
 			select.addinput();
+			$("input").trigger('focus');
 			select.removeaddandaddchoice();
 			$('.querenbotton').on('click',function(){
 			select.addchoiceson();
@@ -67,7 +68,39 @@ $('document').ready(function() {
 				var choicesonlength=$('.choiceson').length;
 				var rando=select.RandomNum(choicesonlength-1);
 				var choicesontext=$('.choiceson').eq(rando).find('p').text();
-				alert("那就选"+choicesontext+"吧！");
+				
+				$('#starhelp').css('display','none');
+				$('#dengdaihelp').css('display','block');
+				setTimeout(function(){
+					$('#dengdaihelp').css('display','none');
+					$('#starhelp').css('display','block');
+					setTimeout(function(){
+					//alert("那就选"+choicesontext+"吧！");
+					$("#androidDialog1").css('z-index','99');
+					$("#androidDialog1").css('opacity','1');
+					$("#androidDialog1").find('.xuanzejieguo68').text(choicesontext);
+					//$("#androidDialog1").animate({
+					//	opacity:1
+					//},200);
+				},200);
+				},500);
 			}
+		});
+		$('.liaojie').on('click',function(){
+					// $("#androidDialog1").animate({
+					// 	opacity:0
+					// },200,function(){
+					// 	$("#androidDialog1").css('z-index','-1');
+					// });
+					$("#androidDialog1").css('opacity','0');
+					setTimeout(function(){
+						$("#androidDialog1").css('z-index','-1');
+					},200);
+		})
+		$('body').keyup(function(e) {
+    //alert(e.keyCode);
+    		if(e.keyCode == 13) {
+        		$('.querenbotton').trigger('click');
+    		  }
 		});
 		});

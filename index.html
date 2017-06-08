@@ -16,10 +16,25 @@
 		<div class="header">
 			<img src="image/logo.jpg">
 		</div>
-		<div class="title title1 add68">点击带“+”的按钮，添加选项</div>
+		<div class="title title1 add68">点击“+”按钮添加选项</div>
 		<a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default addbotton add68">+</a>
 
-		<a href="javascript:;" class="weui-btn weui-btn_disabled weui-btn_primary help_button">开始帮忙选择</a>
+		<a href="javascript:;" class="weui-btn weui-btn_disabled weui-btn_primary help_button" id="starhelp">帮你选择</a>
+		<a href="javascript:;" class="weui-btn weui-btn_primary weui-btn_loading help_button" id="dengdaihelp"><i class="weui-loading"></i>等待结果</a>
+
+		<div class="js_dialog" id="androidDialog1" style="opacity: 0;z-index: -1;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog weui-skin_android">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title">选择结果</strong></div>
+                <div class="weui-dialog__bd xuanzejieguo68">
+                    如果这不是你的选择结果，说明出错咯
+                </div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary liaojie">朕了解了</a>
+                </div>
+            </div>
+        </div>
+
 	</div>
 	<script src="js/zepto.min.js">
 	</script>

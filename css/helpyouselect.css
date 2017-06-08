@@ -13,6 +13,7 @@ body{
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
+	font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 
 .container{
@@ -40,7 +41,7 @@ body{
 
 .shuruxuanzeneirong{
 	width: 100%;
-	margin-top:0rem;
+	margin-top:1.0rem;
 }
 
 .addbotton{
@@ -71,6 +72,7 @@ body{
 	font-size: 1.7rem;
 	word-break: break-all;
 	word-wrap:break-word;
+	color: #999999;
 }
 
 .weui-input{
@@ -91,4 +93,16 @@ body{
 	position: absolute;
 	right: 0.6rem;
 	top: -0.6rem;
+}
+#dengdaihelp{
+	display: none;
+}
+.title1{
+	width: calc(100% - 3rem);
+	padding:0 1.5rem;
+	text-align: left;
+}
+
+#androidDialog1{
+	transition: opacity 0.2s;
 }
