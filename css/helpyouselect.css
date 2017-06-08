@@ -1,0 +1,83 @@
+*{
+	padding:0px;
+	margin: 0px;
+}
+
+html{
+	font-size: 62.5%;
+}
+
+body{
+	width: 100%;
+	background-color: #eeeeee;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-bottom:1.6rem;
+}
+.header{
+	width: 60%;
+	margin-top:1.5rem;
+	margin-bottom:1.5rem;
+}
+.header img{
+	width: 100%;
+}
+
+.title{
+	text-align: center;
+	font-size: 1.6rem;
+	margin-top:2.4rem;
+	width: 100%;
+}
+
+.shuruxuanzeneirong{
+	width: 100%;
+	margin-top:0rem;
+}
+
+.addbotton{
+	width: calc(100% - 3.0rem);
+	font-size: 2.4rem;
+	height: 4.6rem;
+	line-height: 4.6rem;
+}
+
+.help_button{
+	width: calc(100% - 3.0rem);
+	font-weight: 400;
+	height: 4.6rem;
+	font-size: 1.8rem;
+	margin-top: 2.4rem;
+}
+
+.queren68{
+	display: none;
+}
+
+.choiceson{
+	padding:1.0rem 1.5rem;
+	width: calc(100% - 3.0rem);
+	background-color: #ffffff;
+}
+.choiceson p{
+	font-size: 1.7rem;
+	word-break: break-all;
+	word-wrap:break-word;
+}
+.weui-cell__ft{
+	cursor: pointer;
+}
+
+.footer{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 1.6rem;
+}
