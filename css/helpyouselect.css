@@ -9,6 +9,7 @@ html{
 
 body{
 	width: 100%;
+	min-height: 100vh;
 	background-color: #eeeeee;
 	display: flex;
 	justify-content: space-between;
@@ -18,10 +19,11 @@ body{
 
 .container{
 	display: flex;
+	min-height: 100vh;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	margin-bottom:1.6rem;
+	position: relative;
 }
 .header{
 	width: 60%;
@@ -41,7 +43,7 @@ body{
 
 .shuruxuanzeneirong{
 	width: 100%;
-	margin-top:1.0rem;
+	margin-top:0rem;
 }
 
 .addbotton{
@@ -57,10 +59,7 @@ body{
 	height: 4.6rem;
 	font-size: 1.8rem;
 	margin-top: 2.4rem;
-}
-
-.queren68{
-	display: none;
+	margin-bottom: 5.4rem;
 }
 
 .choiceson{
@@ -92,10 +91,7 @@ body{
 .querenquxiaocontainer{
 	position: absolute;
 	right: 0.6rem;
-	top: -0.6rem;
-}
-#dengdaihelp{
-	display: none;
+	top: 0.6rem;
 }
 .title1{
 	width: calc(100% - 3rem);
@@ -105,4 +101,8 @@ body{
 
 #androidDialog1{
 	transition: opacity 0.2s;
+}
+.copyright{
+	position: absolute;
+	bottom: 1rem;
 }
