@@ -1,0 +1,17 @@
+*{
+	padding:0px;
+	margin: 0px;
+}
+
+html{
+	font-size: 62.5%;
+}
+
+body{
+	width: 100%;
+	min-height: 100vh;
+	background-color: #eeeeee;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}

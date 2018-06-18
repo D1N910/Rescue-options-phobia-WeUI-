@@ -1,22 +1,3 @@
-*{
-	padding:0px;
-	margin: 0px;
-}
-
-html{
-	font-size: 62.5%;
-}
-
-body{
-	width: 100%;
-	min-height: 100vh;
-	background-color: #eeeeee;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
-}
-
 .container{
 	display: flex;
 	min-height: 100vh;
@@ -25,20 +6,36 @@ body{
 	width: 100%;
 	position: relative;
 }
-.header{
-	width: 60%;
-	margin-top:1.5rem;
-	margin-bottom:1.5rem;
+/*标题*/
+.page__hd{
+	padding:32px 0 0 0;
+	width: calc(100% - 3.0rem);
+	font-size: 2.4rem;
 }
-.header img{
-	width: 100%;
+.page__title{
+	text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+}
+.page__desc{
+	margin-top: 5px;
+    color: #888;
+    text-align: left;
+    font-size: 14px;
 }
 
+/*多选*/
+.weui-cells_form{
+	width: 100%;
+}
 .title{
 	text-align: center;
-	font-size: 1.6rem;
 	margin-top:2.4rem;
-	width: 100%;
+	width: calc(100% - 3rem);
+	padding:0 1.5rem;
+	text-align: left;
+	color: #888;
+    font-size: 14px;
 }
 
 .shuruxuanzeneirong{
@@ -93,16 +90,117 @@ body{
 	right: 0.6rem;
 	top: 0.6rem;
 }
-.title1{
-	width: calc(100% - 3rem);
-	padding:0 1.5rem;
-	text-align: left;
-}
-
 #androidDialog1{
 	transition: opacity 0.2s;
 }
 .copyright{
 	position: absolute;
 	bottom: 1rem;
+}
+
+.page__hd{
+	margin-bottom: 16px;
+}
+.weui-cells__title{
+    margin-top: .77em;
+    margin-bottom: .3em;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #999999;
+    font-size: 14px;
+    width: calc(100% - 30px);
+}
+
+.weui-cells{
+	margin-top: 0px;
+}
+
+.page__bd{
+	width: 100%;
+}
+.weui-loadmore_line {
+    border-top: 1px solid #E5E5E5;
+    margin-top: 2.4em;
+}
+..weui-loadmore{
+	width: 65%;
+    margin: 1.5em auto;
+    line-height: 1.6em;
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid 
+}
+
+.weui-loadmore_line .weui-loadmore__tips {
+    position: relative;
+    top: -0.9em;
+    padding: 0 .55em;
+    background-color: #eeeeee;
+    color: #999999;
+}
+.weui-loadmore__tips {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.option_title_display{
+	display: none;
+}
+
+.weui-mask_transparent{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.weui-icon_toast.weui-loading{
+    margin: 30px auto 0 auto;
+    width: 38px;
+    height: 38px;
+    vertical-align: baseline;
+}
+
+.weui-loading{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+    animation: weuiLoading 1s steps(12, end) infinite;
+    background: transparent url(data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' …l='%23E2E2E2' rx='5' ry='5' transform='rotate(-30 -5.98 65)'/%3E%3C/svg%3E) no-repeat;
+    background-size: 100%;
+}
+.weui-icon_toast{
+    margin: 22px 0 0;
+    display: block;
+}
+.weui-toast__content {
+	font-size: 16px;
+    margin: 0 0 15px;
+}
+
+.weui-toast{
+    position: fixed;
+    z-index: 5000;
+    width: 13.6em;
+    min-height: 13.6em;
+    background: rgba(17, 17, 17, 0.7);
+    text-align: center;
+    border-radius: 5px;
+    color: #FFFFFF;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+#loadingToast{
+	transition: all 0.5s;
+}
+
+.fujing_input{
+	border:0;
+	border-bottom: 1px solid #000;
+	outline: 0;
+	font-size: 17px;
 }
