@@ -135,8 +135,6 @@ $('document').ready(function () {
 		* 用以显示选择结果的弹窗
 		*/
 		PopupWowToShowSelectionResult: function () {
-			// 获取选项的选项的文字内容
-			var choicesontext = $('.weui-input').eq(select.RandomNum($('.weui-input').length - 1)).val();
 			// 修改弹窗的标题
 			$('.weui-dialog__title').text("选择结果");
 			$('#starhelp').css('display', 'none');
@@ -148,7 +146,7 @@ $('document').ready(function () {
 				setTimeout(function () {
 					$("#androidDialog1").css('z-index', '99');
 					$("#androidDialog1").css('opacity', '1');
-					$("#androidDialog1").find('.xuanzejieguo68').text(choicesontext);
+					$("#androidDialog1").find('.xuanzejieguo68').text($('.weui-input').eq(select.RandomNum($('.weui-input').length - 1)).val());
 				}, 200);
 			}, 500);
 		},
@@ -169,8 +167,8 @@ $('document').ready(function () {
 		* 用以显示错误信息的弹窗
 		*/
 		PopupWindowToDisplayErrorMessage: function () {
+			//修改标题投
 			$('.weui-dialog__title').text("出错啦");
-			var choicesontext = "官人，你有的选择是空的哦，请填写它或者删了它~";
 			$('#starhelp').css('display', 'none');
 			$('#dengdaihelp').css('display', 'block');
 			setTimeout(function () {
@@ -179,20 +177,23 @@ $('document').ready(function () {
 				setTimeout(function () {
 					$("#androidDialog1").css('z-index', '99');
 					$("#androidDialog1").css('opacity', '1');
-					$("#androidDialog1").find('.xuanzejieguo68').text(choicesontext);
+					$("#androidDialog1").find('.xuanzejieguo68').text("官人，你有的选择是空的哦，请填写它或者删了它~");
 				}, 200);
 			}, 500);
 		},
+		// 等待显示
 		waitshow: function () {
 			$('#loadingToast').css('display', 'block');
 			$('#loadingToast').css('opacity', '1');
 		},
+		// 等待隐藏
 		waitunshow: function () {
 			$('#loadingToast').css('opacity', '0');
 			setTimeout(function () {
 				$('#loadingToast').css('display', 'none');
 			}, 500);
 		},
+		// 自动添加快速选项的信息
 		autoaddopiton: function (name, e) {
 			if (autooption[name]) {
 				for (var i = autooption[name].length - 1; i >= 0; i--) {
@@ -203,11 +204,14 @@ $('document').ready(function () {
 				e.checked = false;//让按钮回弹
 			}
 		},
+		// 查找附近的餐厅
 		searchfujing: function () {
-			if (isWeiXin() && isWeiXinalert) {
+			// 是不是浏览器打开的
+			if (isWeiXinalert && isWeiXin()) {
 				isWeiXinalert = 0;
 				alert("各位使用微信的老爷们，使用此功能建议在其他浏览器（chrome浏览器等）打开，微信浏览器的定位功能蛋糕还在学习，可能会有偏差哦~");
 			}
+			// 定义地图变量
 			var map = new BMap.Map("allmap");
 			var getlnglat = new Object();
 			var geolocation = new BMap.Geolocation();
@@ -223,16 +227,18 @@ $('document').ready(function () {
 						$('.fujing_input').focus();
 						return;
 					}
-
 					// var mPoint = new BMap.Point(113.68218290686,24.779547719611);
 					var mPoint = new BMap.Point(getlnglat.lng, getlnglat.lat);
 					map.centerAndZoom(mPoint, 11);
-
+					// 选项的配置
 					var options = {
+						// 搜索完成后的回调函数
 						onSearchComplete: function (results) {
-							var totalResults = results.getNumPois();  // 需要获取当前搜索总共有多少条结果  
+							// 获取当前搜索总共有多少条结果 
+							// var totalResults = results.getNumPois();   
 							var totalPages = results.getNumPages();
-							var currPage = results.getPageIndex();// 获取当前是第几页数据 
+							// 获取当前是第几页数据
+							var currPage = results.getPageIndex();
 							if (totalPages > 4) {
 								totalPages = 4;
 							}
@@ -240,6 +246,7 @@ $('document').ready(function () {
 							for (var i = 0; i < results.getCurrentNumPois(); i++) {
 								autooption['nearbyRestaurant'].push(results.getPoi(i).title + ", " + results.getPoi(i).address);
 							}
+							// 获取其他页数的内容
 							if (results.getPageIndex() < totalPages - 1) {
 								local.gotoPage(results.getPageIndex() + 1); // 遍历到最后一页之后不再进行下一页搜索，此时，已经获取到全部的搜索结果，  }
 							} else {
@@ -259,12 +266,12 @@ $('document').ready(function () {
 			}, { enableHighAccuracy: true })
 		}
 	}
-
+	// 添加选项按钮绑定点击事件
 	$('.addbotton').on('click', function () {
 		select.addinput("", "");
 		$("input").trigger('focus');
 	});
-
+	//帮忙选择按钮绑定事件
 	$('.help_button').on('click', function (e) {
 		if ($(this).attr('class') == 'weui-btn weui-btn_primary help_button') {
 			if (select.jianceinputkong()) {
@@ -274,13 +281,14 @@ $('document').ready(function () {
 			}
 		}
 	});
-	$('.liaojie').on('click', function () {
+	//弹窗确认按钮绑定事件
+	$('.confirm').on('click', function () {
 		$("#androidDialog1").css('opacity', '0');
 		setTimeout(function () {
 			$("#androidDialog1").css('z-index', '-1');
 		}, 200);
 	})
-	//yes/no 实现
+	//快速选择按钮绑定事件
 	$('.weui-switch').on('click', function (e) {
 		autooption['nearbyRestaurant'] = [];
 		var thisparentID = $(this).parent().parent().attr('id');
@@ -296,6 +304,4 @@ $('document').ready(function () {
 			select.panduanbnxz();
 		}
 	});
-	//附近餐馆功能实现
-	//读取地址
 });
