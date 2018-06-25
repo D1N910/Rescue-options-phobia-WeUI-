@@ -133,12 +133,9 @@ $('document').ready(function () {
 		},
 		/** 
 		* 用以显示选择结果的弹窗
-		* @param Max 最大值
 		*/
 		PopupWowToShowSelectionResult: function () {
-			var choicesonlength = $('.weui-input').length;
-			var rando = select.RandomNum(choicesonlength - 1);
-			var choicesontext = $('.weui-input').eq(rando).val();
+			var choicesontext = $('.weui-input').eq(select.RandomNum($('.weui-input').length - 1)).val();
 			$('.weui-dialog__title').text("选择结果");
 			$('#starhelp').css('display', 'none');
 			$('#dengdaihelp').css('display', 'block');
