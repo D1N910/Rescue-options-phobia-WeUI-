@@ -137,9 +137,11 @@ $('document').ready(function () {
 		PopupWowToShowSelectionResult: function () {
 			// 获取选项的选项的文字内容
 			var choicesontext = $('.weui-input').eq(select.RandomNum($('.weui-input').length - 1)).val();
+			// 修改弹窗的标题
 			$('.weui-dialog__title').text("选择结果");
 			$('#starhelp').css('display', 'none');
 			$('#dengdaihelp').css('display', 'block');
+			//定时显示，显得很专业
 			setTimeout(function () {
 				$('#dengdaihelp').css('display', 'none');
 				$('#starhelp').css('display', 'block');
@@ -150,6 +152,9 @@ $('document').ready(function () {
 				}, 200);
 			}, 500);
 		},
+		/** 
+		* 检测input有没有空的
+		*/
 		jianceinputkong: function () {
 			var jianceinputkong = 1;
 			for (var i = 0; i <= $('.weui-input').length - 1; i++) {
@@ -160,7 +165,10 @@ $('document').ready(function () {
 			}
 			return jianceinputkong;
 		},
-		tanchuangtishi2: function () {
+		/** 
+		* 用以显示错误信息的弹窗
+		*/
+		PopupWindowToDisplayErrorMessage: function () {
 			$('.weui-dialog__title').text("出错啦");
 			var choicesontext = "官人，你有的选择是空的哦，请填写它或者删了它~";
 			$('#starhelp').css('display', 'none');
@@ -262,7 +270,7 @@ $('document').ready(function () {
 			if (select.jianceinputkong()) {
 				select.PopupWowToShowSelectionResult();
 			} else {
-				select.tanchuangtishi2();
+				select.PopupWindowToDisplayErrorMessage();
 			}
 		}
 	});
