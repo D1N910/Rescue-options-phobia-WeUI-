@@ -135,6 +135,7 @@ $('document').ready(function () {
 		* 用以显示选择结果的弹窗
 		*/
 		PopupWowToShowSelectionResult: function () {
+			// 获取选项的选项的文字内容
 			var choicesontext = $('.weui-input').eq(select.RandomNum($('.weui-input').length - 1)).val();
 			$('.weui-dialog__title').text("选择结果");
 			$('#starhelp').css('display', 'none');
