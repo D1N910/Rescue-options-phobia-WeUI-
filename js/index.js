@@ -1,13 +1,15 @@
+/**
+ * 解救选择恐惧症 v2.0
+ * 作者：D1n910
+ * Github:https://github.com/D1N910/Rescue-options-phobia-WeUI-
+ */
 $('document').ready(function () {
-	function isWeiXin() {
-		var ua = navigator.userAgent.toLowerCase();
-		var isWeixin = ua.indexOf('micromessenger') != -1;
-		if (isWeixin) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	/***
+ 	* @param isWeiXinalert 记录是否有弹出过微信浏览器不兼容提示框，1代表未弹出过，0表示弹出过
+	* @param autooption 自动添加选项对象数组设置
+	* @param autooption["yon"] yes or no 是或否的配置，修改数组中的元素内容/数量，自动增加对应的选项
+	* @param autooption["nearbyRestaurant"] 附近餐厅 实际上不止餐厅
+ 	*/
 	var isWeiXinalert = 1;
 	var autooption = {
 		"yon": [
@@ -16,38 +18,102 @@ $('document').ready(function () {
 		"nearbyRestaurant": [
 		]
 	}
-
+	/**
+	 * 检查是不是微信登录
+	 * @param ua 获取当前对象的用户代理的小写字母表示
+	 * @param isWeixin 将ua与micromessenger匹配查看有没有micromessenger
+	 */
+	function isWeiXin() {
+		//获取当前的用户代理
+		var ua = navigator.userAgent.toLowerCase();
+		//匹配用户代理的内容，看是不是微信浏览器打开的
+		var isWeixin = ua.indexOf('micromessenger') != -1;
+		// 如果是微信打开的
+		if (isWeixin) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//	select 单例模式 集合了选项方法的对象
 	var select = {
+		/**
+		* 添加选项
+		* @param name 选项类名，通过添加选项类名来作为快速选项的显示和隐藏方案
+		* @param optiontext 选项内容
+		*/
 		addinput: function (name, optiontext) {
-			$('.title1').before('<div class="weui-cells shuruxuanzeneirong ' + name + '"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" value="' + optiontext + '" placeholder="请输入选择的内容"> </div></div><div class="querenquxiaocontainer queren68"><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default quxiaobotton">删除</a></div></div>');
-			//删除选项
-			$('.queren68').unbind();
-			$(".queren68").on('click', function (e) {
-				$(this).parents('.shuruxuanzeneirong').remove();
+			//在添加选项按钮之前插入选项，Container-to-show-option后面记得加空格，不然会和name在一起为同一字符串
+			$('.Button-to-add-options').before('<div class="weui-cells Container-to-show-options ' + name + '"><div class="weui-cell"><div class="weui-cell__bd"><input class="weui-input" type="text" value="' + optiontext + '" placeholder="请输入选择的内容"> </div></div><div class="querenquxiaocontainer Button-to-delete-options"><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default quxiaobotton">删除</a></div></div>');
+			//将所有用以删除选项的按钮解除事件绑定
+			$('.Button-to-delete-options').unbind();
+			//为所有用以删除选项的按钮绑定点击事件
+			$(".Button-to-delete-options").on('click', function (e) {
+				//移除被删除的选项
+				$(this).parents('.Container-to-show-options').remove();
+				//调用删除选项后的回调方法
 				select.panduanbnxz($(this).parents());
 			});
+			//调用删除选项后的回调方法
 			this.panduanbnxz();
 		},
+		/**
+		* 调用删除选项后的回调方法
+		* @param e 输入框对象
+		*/
 		panduanbnxz: function (e) {
-
+			// 获得选项的数量
+			var WeuiInputNum = $('.weui-input').length;
+			// 切换显示帮忙选择按钮的样式
+			select.ToggleTheStateOfTheButtonThatHelpedSelect(WeuiInputNum);
+			// 切换显示交互提示文字
+			select.ToggleDisplayInteractivePromptText(WeuiInputNum);
+			// 修改快速添加按钮的选择状态的方法
+			select.ToModifyTheStatuOfTheQuickButton(e);
+		},
+		/**
+		* 修改快速添加按钮的选择状态的方法
+		* @param e 输入框对象
+		*/
+		ToModifyTheStatuOfTheQuickButton: function (e) {
 			if (typeof (e) != 'undefined') {
+				// 给getevent赋值e
 				$getevent = e;
-				var getClass = $getevent.attr('class').split(' ');
-				if (getClass.length == 3) {
-					if (autooption[getClass[2]]) {
-						if ($('.' + getClass[2]).length <= 0) {
-							var s2e = getClass[2] + '2';
+				//  选项容器的类名赋值
+				var classNameOfTheOptionsContainer = $getevent.attr('class').split(' ');
+				//  如果选项容器的类名有三个
+				if (classNameOfTheOptionsContainer.length == 3) {
+					//  如果选项容器的第三个类名是在快速添加里的
+					if (autooption[classNameOfTheOptionsContainer[2]]) {
+						//  如果某类快速添加的选项长度为0
+						if ($('.' + classNameOfTheOptionsContainer[2]).length <= 0) {
+							//  找到这个快速添加的按钮
+							var s2e = classNameOfTheOptionsContainer[2] + '2';
+							//  让这个快速添加的按钮的选择状态为未选择状态
 							document.getElementById(s2e).checked = false;
 						}
 					}
 				}
 			}
-			if ($('.weui-input').length < 2) {
-				select.adddis();
+		},
+		/**
+		 * 切换显示帮忙选择按钮的样式
+		 * @param WeuiInputNum 选项的数量
+		 */
+		ToggleTheStateOfTheButtonThatHelpedSelect: function (WeuiInputNum) {
+			// 如果选项少于两个
+			if (WeuiInputNum < 2) {
+				$('.help_button').addClass('weui-btn_disabled');
 			} else {
-				select.removedis();
+				$('.help_button').removeClass('weui-btn_disabled');
 			}
-			if ($('.weui-input').length < 1) {
+		},
+		/**
+		 * 切换显示交互文字
+		 * @param WeuiInputNum 选项的数量
+		 */
+		ToggleDisplayInteractivePromptText: function (WeuiInputNum) {
+			if (WeuiInputNum < 1) {
 				$('.option_title_display').css('display', 'none');
 				$('.ifHaveoption_display').css('display', 'block');
 			} else {
@@ -55,19 +121,21 @@ $('document').ready(function () {
 				$('.ifHaveoption_display').css('display', 'none');
 			}
 		},
-		removedis: function () {
-			$('.help_button').removeClass('weui-btn_disabled');
-		},
-		adddis: function () {
-			$('.help_button').addClass('weui-btn_disabled');
-		},
+		/**
+		 * 获取随机数
+		 * @param Max 最大值
+		 */
 		RandomNum: function (Max) {
 			var Range = Max;
 			var Rand = Math.random();
 			var num = Math.round(Rand * Range);
 			return num;
 		},
-		tanchuangtishi: function () {
+		/** 
+		* 用以显示选择结果的弹窗
+		* @param Max 最大值
+		*/
+		PopupWowToShowSelectionResult: function () {
 			var choicesonlength = $('.weui-input').length;
 			var rando = select.RandomNum(choicesonlength - 1);
 			var choicesontext = $('.weui-input').eq(rando).val();
@@ -194,7 +262,7 @@ $('document').ready(function () {
 	$('.help_button').on('click', function (e) {
 		if ($(this).attr('class') == 'weui-btn weui-btn_primary help_button') {
 			if (select.jianceinputkong()) {
-				select.tanchuangtishi();
+				select.PopupWowToShowSelectionResult();
 			} else {
 				select.tanchuangtishi2();
 			}
